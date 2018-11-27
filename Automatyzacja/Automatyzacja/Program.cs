@@ -22,7 +22,7 @@ namespace Automatyzacja
 
             foreach(var result in searchResults)
             {
-                var link = result.FindElement(By.CssSelector(".rc>a"));
+                var link = result.FindElement(By.CssSelector(".r>a"));
                 if (link.GetAttribute("href") == "http://agileszkolenia.pl/")
                 {
                     Console.WriteLine("Znalazłem");
@@ -30,7 +30,7 @@ namespace Automatyzacja
                 }
             }
         
-          //  browser.Quit();
+           browser.Quit();
         
         }
     }
