@@ -1,1 +1,1 @@
-# automatyzacja2018
+# Automatyzacja - jesień 2018
