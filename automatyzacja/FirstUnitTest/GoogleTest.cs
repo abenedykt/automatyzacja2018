@@ -41,6 +41,7 @@ namespace NaiveUnitTest
             foreach (var result in results)
             {
                 var link = result.FindElement(By.CssSelector(".r>a"));
+
                 if (link.GetAttribute("href") == "http://agileszkolenia.pl/")
                 {
                     expected = result;
