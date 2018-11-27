@@ -1,1 +1,1 @@
-# Automatyzacja - jesień 2018
+zmiana pierwsza # Automatyzacja - jesień 2018
