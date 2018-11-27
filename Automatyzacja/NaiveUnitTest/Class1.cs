@@ -21,7 +21,7 @@ namespace GoogleTests
         [Fact]
         public void Can_google_out_code_sprinters()
         {
-            throw new Exception();
+            //throw new Exception();
 
             browser.Navigate().GoToUrl("http://google.com");
 

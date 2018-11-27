@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automatyzacja", "Automatyza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaiveUnitTest", "NaiveUnitTest\NaiveUnitTest.csproj", "{063A0F9B-E5B6-4ABC-9345-882707B19920}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{17369AB3-3656-4D3C-B2F6-F94EC95DB210}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{063A0F9B-E5B6-4ABC-9345-882707B19920}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{063A0F9B-E5B6-4ABC-9345-882707B19920}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{063A0F9B-E5B6-4ABC-9345-882707B19920}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
