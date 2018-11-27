@@ -48,7 +48,6 @@ namespace FirstUnitTest
                     break;
                 }
             }
-
             Assert.NotNull(expected);
         }
     }
