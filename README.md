@@ -1,1 +1,2 @@
-# Automatyzacja - jesień 2018
+﻿# Automatyzacja - jesień 2018
+Dzień dobry
