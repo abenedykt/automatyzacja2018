@@ -10,7 +10,7 @@ using Xunit;
 
 namespace Automatyzacja
 {
-    public class WordPressSite 
+    public class WordPressSite : IDisposable
     {
         private IWebDriver browser;
 
@@ -34,7 +34,7 @@ namespace Automatyzacja
 
             var Comment = browser.FindElement(By.CssSelector("#post-1 > footer > span.comments-link > a"));
             Comment.Click();
-           
+
 
             var Coments = browser.FindElement(By.Id("comment"));
             Coments.Click();
@@ -53,12 +53,23 @@ namespace Automatyzacja
 
             var Opublikuj = browser.FindElement(By.CssSelector("#submit"));
             Opublikuj.Click();
-            Opublikuj.Submit();
             Thread.Sleep(1000);
 
             browser.Quit();
+            Assert.NotNull(GenerateEmail());
+
 
         }
+
+        public void Dispose()
+        {
+            if (browser == null)
+            {
+                ;
+            }
+        }
+ 
+
     }
 }
 
