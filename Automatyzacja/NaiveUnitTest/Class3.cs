@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,5 +74,60 @@ namespace NewTestAddCommnet
             }
         }
 
+        private void MoveToElement(By selector)
+
+        {
+
+            var element = browser.FindElement(selector);
+
+            MoveToElement(element);
+
+        }
+
+        private void MoveToElement(IWebElement element)
+
+        {
+
+            Actions builder = new Actions(browser);
+
+            Actions moveTo = builder.MoveToElement(element);
+
+            moveTo.Build().Perform();
+
+        }
+
+        [Fact]
+        public void Login()
+        {
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
+            browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+
+            var username = browser.FindElement(By.Name("log"));
+            username.SendKeys("automatyzacja");
+
+            var password = browser.FindElement(By.Name("pwd"));
+            password.SendKeys("jesien2018");
+
+            var ClickToLogin = browser.FindElement(By.Name("wp-submit"));
+            ClickToLogin.Click();
+
+            var CheckName = browser.FindElement(By.CssSelector(".wrap > h1"));
+            Assert.True(CheckName.Text == "Kokpit");
+
+            var login = browser.FindElement(By.CssSelector(".display-name"));
+            Assert.True(login.Text == "Jan Automatyczny"); 
+            MoveToElement(login);
+
+            var logout = browser.FindElement(By.Id("wp-admin-bar-logout"));
+            logout.Click();
+
+            var CheckIfLogout = browser.FindElement(By.CssSelector("p.message"));
+            Assert.True(CheckIfLogout.Text == "Wylogowano się.");
+
+            var LoginPage = browser.FindElement(By.XPath ("//*[@id='loginform']/p[1]/label"));
+            Assert.Equal("Nazwa użytkownika lub e-mail", LoginPage.Text);
+
+
+        }
     }
 }
