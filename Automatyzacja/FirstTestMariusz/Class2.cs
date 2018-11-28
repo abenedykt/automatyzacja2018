@@ -40,6 +40,44 @@ namespace FirstTestMariusz
             }
             Assert.NotNull(expected);
         }
+       
+        [Fact]
+        public void CommentTest()
+        {
+            var commnetText = "Komentarz Mariusza";
+            var authorText = "Mariusz";
+            var emailText = $"{Guid.NewGuid().ToString()}@mariusz.text.com";
+
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net");
+
+            var comments = browser.FindElement(By.XPath("//*[@class='comments-link']/a"));
+            comments.Click();
+
+            var comment = browser.FindElement(By.Id("comment"));
+            comment.SendKeys(commnetText);
+
+            var author = browser.FindElement(By.Id("author"));
+            author.SendKeys(authorText);
+
+            var email = browser.FindElement(By.Id("email"));
+            email.SendKeys(emailText);
+
+            var submit = browser.FindElement(By.Id("submit"));
+            submit.Click();
+
+            var cccc = browser.FindElements(By.XPath("//*[@class='comment-content']/p"));
+
+            IWebElement expected = null;
+            foreach (var result in cccc)
+            {
+                if (result.Text == commnetText)
+                {
+                    expected = result;
+                    break;
+                }
+            }
+            Assert.NotNull(expected);
+        }
         public void Dispose()
         {
             if (browser != null)
