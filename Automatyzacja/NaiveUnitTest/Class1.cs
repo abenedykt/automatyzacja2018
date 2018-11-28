@@ -173,8 +173,11 @@ namespace WebTests
 
             //Check if comment was added
             var comments_list = browser.FindElement(By.CssSelector("ol.comment-list")).FindElements(By.CssSelector("li"));
-            bool expected_exists = false;
-            
+            //bool expected_exists = false;
+
+            comments_list.Single(x=> x.FindElement(By.ClassName("fn")).Text == sign_text && x.FindElement(By.CssSelector("div.comment-content>p")).Text == comment_text);
+
+            /*
             foreach (var result in comments_list)
             {
                 //Get elements
@@ -190,6 +193,7 @@ namespace WebTests
 
             //Check if comment was added
             Assert.True(expected_exists);
+            */
         }
     }
 }
