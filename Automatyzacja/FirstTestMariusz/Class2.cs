@@ -44,8 +44,8 @@ namespace FirstTestMariusz
         [Fact]
         public void CommentTest()
         {
-            var commnetText = "Komentarz Mariusza";
-            var authorText = "Mariusz";
+            var commnetText = $"{Guid.NewGuid().ToString()}@komentarz";
+            var authorText = $"{Guid.NewGuid().ToString()}@mariusz"; ;
             var emailText = $"{Guid.NewGuid().ToString()}@mariusz.text.com";
 
             browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net");
@@ -65,18 +65,9 @@ namespace FirstTestMariusz
             var submit = browser.FindElement(By.Id("submit"));
             submit.Click();
 
-            var cccc = browser.FindElements(By.XPath("//*[@class='comment-content']/p"));
-
-            IWebElement expected = null;
-            foreach (var result in cccc)
-            {
-                if (result.Text == commnetText)
-                {
-                    expected = result;
-                    break;
-                }
-            }
-            Assert.NotNull(expected);
+            var assertComment = browser.FindElements(By.XPath("//*[@class='comment-content']/p"));
+            var result = assertComment.Where(x => x.Text == commnetText);
+            Assert.Single(result);
         }
         public void Dispose()
         {
