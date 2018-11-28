@@ -63,7 +63,12 @@ namespace NaiveUnitTest
             _browser.FindElement(By.Id("user_login")).SendKeys("automatyzacja");
             _browser.FindElement(By.Id("user_pass")).SendKeys("jesien2018");
             _browser.FindElement(By.Id("wp-submit")).Click();
+<<<<<<< HEAD
             
+=======
+
+
+>>>>>>> 6083b08fe3be993b72405a63c045af2f02e6f4bb
             // todo am I logged in?
 
             IWebElement element = _browser.FindElement(By.Id("wp-admin-bar-my-account"));
@@ -76,7 +81,12 @@ namespace NaiveUnitTest
             _browser.FindElement(logoutButton).Click();
 
             // todo am I logged out? 
+<<<<<<< HEAD
             
+=======
+
+
+>>>>>>> 6083b08fe3be993b72405a63c045af2f02e6f4bb
         }
 
         private string GenerateEmail()

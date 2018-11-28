@@ -22,7 +22,7 @@ namespace NaiveUnitTest
         public void Can_login_and_logout()
         {
             var strona_logowania = new StronaLogowania(_browser);
-            var strona_administracyjna = strona_logowania.zaloguj("automatyzacja","jesien2018");
+            var strona_administracyjna = strona_logowania.zaloguj(Configuration.UserName,Configuration.Password);
             Assert.True(strona_administracyjna.jest_otwarta());
             var strona_wylogowania = strona_administracyjna.wyloguj();
             Assert.True(strona_wylogowania.jest_otwarta());

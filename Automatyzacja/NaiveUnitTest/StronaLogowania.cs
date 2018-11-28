@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using System;
+using OpenQA.Selenium;
 
 namespace NaiveUnitTest
 {
@@ -24,6 +25,16 @@ namespace NaiveUnitTest
         private void ClickLogin()
         {
             _browser.FindElement(By.Id("wp-submit")).Click();
+        }
+
+        internal object zaloguj(object userName, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal object zaloguj(object userName, object password)
+        {
+            throw new NotImplementedException();
         }
 
         private void TypeInPassword(string password)
