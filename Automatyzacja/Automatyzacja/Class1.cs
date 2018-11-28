@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,7 @@ namespace Automatyzacja
     public class WordPressSite : IDisposable
     {
         private IWebDriver browser;
+
 
         private string GenerateEmail()
         {
@@ -55,11 +57,20 @@ namespace Automatyzacja
             Opublikuj.Click();
             Thread.Sleep(1000);
 
-            browser.Quit();
-            Assert.NotNull(GenerateEmail());
+            var comments = browser.FindElement(By.CssSelector("#comments"));
 
 
+
+            var numbers = new[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            numbers.Where(x => x % 2 == 0);
+
+
+            {
+                browser.Quit();
+                
+                }
         }
+
 
         public void Dispose()
         {
