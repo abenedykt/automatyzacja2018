@@ -1,21 +1,26 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace FinallUnitTest
 {
     public class MarkowiczTest : IDisposable
     {
         private ChromeDriver browser;
+        private ITestOutputHelper output;
 
-        public MarkowiczTest()
+        public MarkowiczTest(ITestOutputHelper output)
         {
             browser = new ChromeDriver();
+            this.output = output;
         }
         public void Dispose()
         {
@@ -37,6 +42,25 @@ namespace FinallUnitTest
             const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
+        private void MoveToElement(By selector)
+        {
+            var element = browser.FindElement(selector);
+            MoveToElement(element);
+        }
+
+        private void MoveToElement(IWebElement element)
+        {
+            Actions builder = new Actions(browser);
+            Actions moveTo = builder.MoveToElement(element);
+            moveTo.Build().Perform();
+        }
+
+        private void WaitForClickable(IWebElement element, int seconds)
+        {
+            var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(seconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
         }
 
         [Fact]
@@ -119,5 +143,41 @@ namespace FinallUnitTest
             //Assert.True(expected);
 
         }
+
+        [Fact]
+        public void LogInLogOutWordpress()
+        {
+            string login = "automatyzacja";
+            string password = "jesien2018";
+            string message = "Wylogowano się";
+
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin/");
+
+            var loginTextBox = browser.FindElementById("user_login");
+            var passwordTextBox = browser.FindElementById("user_pass");
+            var logInButton = browser.FindElementById("wp-submit");
+
+            loginTextBox.Click();
+            loginTextBox.SendKeys(login);
+            passwordTextBox.Click();
+            passwordTextBox.SendKeys(password);
+            logInButton.Click();
+
+            var kokpit = browser.FindElementByCssSelector(".wrap > h1").Text;
+            Assert.True(kokpit.ToLower() == "kokpit");
+
+            var userName = browser.FindElementsByClassName("display-name").First();
+            MoveToElement(userName);
+
+            var logOutlink = browser.FindElementById("wp-admin-bar-logout");
+            WaitForClickable(logOutlink, 1);
+            logOutlink.Click();
+
+            var logOutMessage = browser.FindElementByCssSelector(".message");
+            Assert.Contains(message.ToLower(), logOutMessage.Text.ToLower());
+
+            output.WriteLine("Test powiódł się.");
+        }
+
     }
 }
