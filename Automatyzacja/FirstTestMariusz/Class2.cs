@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,45 @@ namespace FirstTestMariusz
             var assertComment = browser.FindElements(By.XPath("//*[@class='comment-content']/p"));
             var result = assertComment.Where(x => x.Text == commnetText);
             Assert.Single(result);
+        }
+
+        [Fact]
+        public void LogInLogOut()
+        {
+            var password = "jesien2018";
+            var user = "automatyzacja";
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
+
+            var userName = browser.FindElement(By.Id("user_login"));
+            userName.SendKeys(user);
+
+            var passwordField = browser.FindElement(By.Id("user_pass"));
+            passwordField.SendKeys(password);
+
+            var logIn = browser.FindElement(By.Id("wp-submit"));
+            logIn.Click();
+
+            browser.Manage()
+               .Timeouts()
+               .ImplicitWait = TimeSpan.FromSeconds(5);
+
+            var assertLigIn = browser.FindElement(By.XPath("//*[@class='wrap']/h1")).Text;
+            Assert.Equal("Kokpit", assertLigIn);
+
+            var element = browser.FindElement(By.Id("wp-admin-bar-my-account"));
+            Actions builder = new Actions(browser);
+            Actions moveTo = builder.MoveToElement(element);
+            moveTo.Build().Perform();
+
+            var logOut = browser.FindElement(By.Id("wp-admin-bar-logout"));
+            logOut.Click();
+
+            var assertText = browser.FindElement(By.XPath("//*[contains(text(),'Wylogowano się.')]")).Text;
+            Assert.Equal("Wylogowano się.", assertText);
+
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
+            var assertNextLogOut = browser.FindElement(By.XPath("//*[contains(text(),'Nazwa użytkownika lub e-mail')]")).Text;
+            Assert.Equal("Nazwa użytkownika lub e-mail", assertNextLogOut);
         }
         public void Dispose()
         {
