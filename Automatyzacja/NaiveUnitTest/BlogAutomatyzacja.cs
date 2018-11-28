@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
@@ -13,10 +14,25 @@ namespace NaiveUnitTest
 
         public BlogAutomatyzacja()
         {
-            _browser= new ChromeDriver();
-            _browser.Manage()
-                .Timeouts()
-                .ImplicitWait = TimeSpan.FromSeconds(5);
+            var chrome = new ChromeDriver();
+            
+            // simulating slow network
+            //
+            //chrome.NetworkConditions = new ChromeNetworkConditions
+            //{
+            //    DownloadThroughput = 50000,
+            //    UploadThroughput = 50000,
+            //    Latency = TimeSpan.FromMilliseconds(800)
+            //};
+            _browser = chrome;
+
+
+            //
+            // implicit timeouts
+            //
+            //_browser.Manage()
+            //    .Timeouts()
+            //    .ImplicitWait = TimeSpan.FromSeconds(5);
             
         }
 
@@ -39,10 +55,47 @@ namespace NaiveUnitTest
             Assert.Single(comments.Where(comment => comment.Text == exampleComment));
         }
 
+        [Fact]
+        public void Can_login_and_logout()
+        {
+            _browser.Navigate().GoToUrl(Configuration.BlogAdminUrl);
+
+            _browser.FindElement(By.Id("user_login")).SendKeys("automatyzacja");
+            _browser.FindElement(By.Id("user_pass")).SendKeys("jesien2018");
+            _browser.FindElement(By.Id("wp-submit")).Click();
+            
+            // todo am I logged in?
+
+            IWebElement element = _browser.FindElement(By.Id("wp-admin-bar-my-account"));
+            Actions builder = new Actions(_browser);
+            Actions moveTo = builder.MoveToElement(element);
+            moveTo.Build().Perform();
+
+            var logoutButton = By.Id("wp-admin-bar-logout");
+            WaitForClickable(logoutButton, 10);
+            _browser.FindElement(logoutButton).Click();
+
+            // todo am I logged out? 
+            
+        }
+
         private string GenerateEmail()
         {
             var user = Guid.NewGuid().ToString();
             return $"{user}@nonexistent.test.com";
+        }
+
+        private void MoveToElement(By selector)
+        {
+            var element = _browser.FindElement(selector);
+            MoveToElement(element);
+        }
+
+        private void MoveToElement(IWebElement element)
+        {
+            Actions builder = new Actions(_browser);
+            Actions moveTo = builder.MoveToElement(element);
+            moveTo.Build().Perform();
         }
 
         private void WaitForClickable(By by, int seconds)
