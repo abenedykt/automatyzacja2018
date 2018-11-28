@@ -18,7 +18,7 @@ namespace NewTestAddCommnet
             browser = new ChromeDriver();
         } 
 
-        private string GenerateEmail()
+        private string GenerateEmail() //generator unikatowego adresu email
         {
             var user = Guid.NewGuid().ToString();
             return $"{user}@nonexistent.test.com";
@@ -28,7 +28,7 @@ namespace NewTestAddCommnet
         [Fact]
         public void Comment()
         {
-            var TextKomentarza = Guid.NewGuid().ToString();
+            var TextKomentarza = Guid.NewGuid().ToString(); //generator unikatowego tekstu komentarza
 
             browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net");
 
