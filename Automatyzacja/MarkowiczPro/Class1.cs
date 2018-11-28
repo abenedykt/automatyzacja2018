@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using static System.Net.WebRequestMethods;
 
 namespace MarkowiczPro
 {
@@ -36,10 +37,10 @@ namespace MarkowiczPro
             foreach (var expectedtitle in link)
             {
                 var link = expectedtitle.FindElement(By.CssSelector(""));
-                if (link.GetAttribute("href") == "http://markowicz.pro/author/rafal-markowicz/")
+                if (expectedtitle.FindElement(By.CssSelector("")).GetAttribute("href") == "http://markowicz.pro/author/rafal-markowicz/")
 
                 {
-                    title = expectedtitle;
+                    link = expectedtitle;
                     break;
                 }
 
@@ -56,6 +57,14 @@ namespace MarkowiczPro
             {
                 browser.Quit();
 
+            }
+        }
+
+        private class title
+        {
+            internal static object FindElements(By by)
+            {
+                throw new NotImplementedException();
             }
         }
     }
