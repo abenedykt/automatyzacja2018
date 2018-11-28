@@ -13,7 +13,11 @@ namespace NaiveUnitTest
 
         public BlogAutomatyzacja()
         {
-            _browser = new ChromeDriver();
+            _browser= new ChromeDriver();
+            _browser.Manage()
+                .Timeouts()
+                .ImplicitWait = TimeSpan.FromSeconds(5);
+            
         }
 
         [Fact]
