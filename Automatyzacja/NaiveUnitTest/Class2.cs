@@ -30,7 +30,6 @@ namespace NaiveUnitTest
             Assert.Equal("Rafał", linkdoautora.Text);
 
             Assert.Equal("http://markowicz.pro/author/rafal-markowicz/", linkdoautora.GetAttribute("href"));
-           
 
         }
 
