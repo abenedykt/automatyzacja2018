@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlogAutomatyzacja.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Markowicz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

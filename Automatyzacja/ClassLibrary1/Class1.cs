@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
-namespace Rafał Markowicz
+namespace rafal
 {
    
-    {
         public class GoogleSearchTests : IDisposable
         {
             private IWebDriver browser;
@@ -18,7 +20,7 @@ namespace Rafał Markowicz
             }
 
             [Fact]
-            public void Ca
+            public void Ca()
             {
                 //throw new Exception();
 
@@ -45,7 +47,7 @@ namespace Rafał Markowicz
 
                 browser.Quit();
 
-                Assert.NotNull(expected);
+            Xunit.Assert.NotNull(expected);
             }
             public void Dispose()
             {
@@ -58,4 +60,4 @@ namespace Rafał Markowicz
     
 
 }
-}
+
