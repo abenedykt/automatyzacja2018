@@ -50,10 +50,12 @@ namespace Automatyzacja
             browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
 
             var name = browser.FindElement(By.CssSelector("#user_login"));
+            WaitForClickable(name, 5);
             name.Click();
             name.SendKeys("automatyzacja");
 
             var password = browser.FindElement(By.CssSelector("#user_pass"));
+            WaitForClickable(password, 5);
             password.Click();
             password.SendKeys("jesien2018");
 
@@ -80,6 +82,7 @@ namespace Automatyzacja
 
 
             var logout = browser.FindElement(By.CssSelector("#wp-admin-bar-logout"));
+            WaitForClickable(logout, 5);
             logout.Click();
 
             var wylogowano = browser.FindElement(By.CssSelector("#login > p.message"));
