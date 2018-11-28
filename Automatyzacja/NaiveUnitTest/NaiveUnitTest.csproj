@@ -64,10 +64,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterUiTests.cs" />
     <Compile Include="BlogAutomatyzacja.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StronaAdministracyjna.cs" />
+    <Compile Include="StronaLogowania.cs" />
+    <Compile Include="StronaWylogowania.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
