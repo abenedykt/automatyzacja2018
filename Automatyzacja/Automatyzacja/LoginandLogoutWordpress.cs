@@ -3,11 +3,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 using Xunit;
 
 namespace Automatyzacja
@@ -65,20 +60,29 @@ namespace Automatyzacja
             var button = browser.FindElement(By.CssSelector("#wp-submit"));
             button.Click();
 
+            {
+                browser.Manage()
+                .Timeouts()
+                .ImplicitWait = TimeSpan.FromSeconds(10);
+            }
+
+
             var nazwaUzytkownika = browser.FindElement(By.ClassName("display-name"));
             Assert.Equal("Jan Automatyczny", nazwaUzytkownika.Text);
-
+            
             MoveToElement(By.CssSelector("#wp-admin-bar-my-account > a"));
 
-            browser.Manage()
-            .Timeouts()
-            .ImplicitWait = TimeSpan.FromSeconds(5);
+            {
+                browser.Manage()
+                .Timeouts()
+                .ImplicitWait = TimeSpan.FromSeconds(10);
+            }
+
 
             var logout = browser.FindElement(By.CssSelector("#wp-admin-bar-logout"));
             logout.Click();
 
             var wylogowano = browser.FindElement(By.CssSelector("#login > p.message"));
-
             Assert.Equal("Wylogowano się.", wylogowano.Text);
 
             {
