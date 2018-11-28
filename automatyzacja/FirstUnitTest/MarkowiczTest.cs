@@ -95,7 +95,9 @@ namespace FinallUnitTest
             var urlTextBox = browser.FindElementById("url");
             var addCommentButton = browser.FindElementById("submit");
 
+            commentTextBox.Click();
             commentTextBox.SendKeys(comment);
+
             authorTextBox.SendKeys(author);
             emailTextBox.SendKeys(email);
             urlTextBox.SendKeys(url);
@@ -103,14 +105,18 @@ namespace FinallUnitTest
             addCommentButton.Click();
 
             var addedCommentsToVerify = browser.FindElementsByClassName("comment-content");
-            bool expected = false;
+            //bool expected = false;
 
-            foreach (var commentA in addedCommentsToVerify)
-            {
-                if (commentA.FindElement(By.CssSelector("p")).Text == comment)
-                    expected = true;
-            }
-            Assert.True(expected);
+            var com = addedCommentsToVerify.Where(c => c.FindElement(By.CssSelector("p")).Text == comment);
+            Assert.Single(com);
+
+            //foreach (var commentA in addedCommentsToVerify)
+            //{
+            //    if (commentA.FindElement(By.CssSelector("p")).Text == comment)
+            //        expected = true;
+            //        break;
+            //}
+            //Assert.True(expected);
 
         }
     }
