@@ -53,16 +53,21 @@ namespace NaiveUnitTest
 
             var articles = browser.FindElements(By.CssSelector("div>p"));
             IWebElement title = null;
-            foreach (var article in articles)
+
+            //foreach (var article in articles)
 
             {
-                if (article.Text == nameText)
+                //if (article.Text == nameText)
                 {
-                    title = article;
-                    break;
+                    //title = article;
+                    //break;
                 }
             }
-            Assert.NotNull(title);
+
+            Assert.Single(articles.Where(x => x.Text == nameText));
+            //Assert.NotNull(title);
+
+
 
         }
 
