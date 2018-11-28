@@ -24,10 +24,18 @@ namespace FirstUnitTest
             return $"{user}@nonexistent.test.com";
         }
 
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         [Fact]
         public void Test1()
         {
-            string comment = "Komentarz";
+            string comment = RandomString(10);
             string author = "Ewelina Witek";
             string email = GenerateEmail();
             string url = "abc.pl";
@@ -51,17 +59,21 @@ namespace FirstUnitTest
 
             var searchResultsComments = browser.FindElements(By.ClassName("comment-content"));
 
-            IWebElement expected = null;
+            // zapisanie pętli foreach za pomocą Linq
+            var result = searchResultsComments.Where(x => x.FindElement(By.CssSelector("p")).Text == comment);
+            Assert.Single(result);
 
-            foreach (var result in searchResultsComments)
-            {
-                if (result.FindElement(By.CssSelector("p")).Text == comment)
-                {
-                    expected = result;
-                    break;
-                }
-            }
-            Assert.NotNull(expected);
+            //IWebElement expected = null;
+
+            //foreach (var result in searchResultsComments)
+            //{
+            //    if (result.FindElement(By.CssSelector("p")).Text == comment)
+            //    {
+            //        expected = result;
+            //        break;
+            //    }
+            //}
+            //Assert.NotNull(expected);
         }
 
         public void Dispose()
