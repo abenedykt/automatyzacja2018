@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 
 namespace FirstUnitTest
 {
@@ -74,6 +76,53 @@ namespace FirstUnitTest
             //    }
             //}
             //Assert.NotNull(expected);
+        }
+
+        [Fact]
+        public void Test2()
+        {
+            string login = "automatyzacja";
+            string password = "jesien2018";
+            string kokpitName = "Kokpit";
+            string logOutName = "Wylogowano się.";
+
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
+
+            var inputLogin = browser.FindElement(By.Id("user_login"));
+            var inputPassword = browser.FindElement(By.Id("user_pass"));
+            var submit = browser.FindElement(By.Id("wp-submit"));
+
+            inputLogin.Click();
+            inputLogin.SendKeys(login);
+            inputPassword.Click();
+            inputPassword.SendKeys(password);
+            submit.Click();
+
+            var kokpit = browser.FindElement(By.CssSelector(".wrap > h1")).Text;
+            Assert.True(kokpit == kokpitName);
+
+            var username = browser.FindElements(By.ClassName("display-name")).First();
+            MoveToElement(username);
+
+            var logOut = browser.FindElement(By.Id("wp-admin-bar-logout"));
+            WaitForClickable(logOut, 1);
+            logOut.Click();
+
+            var logOutMessage = browser.FindElement(By.ClassName("message")).Text;
+            Assert.True(logOutMessage == logOutName);
+        }
+
+        private void WaitForClickable(IWebElement element, int seconds)
+        {
+            var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(seconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+        }
+
+        private void MoveToElement(IWebElement element)
+        {
+            Actions builder = new Actions(browser);
+            Actions moveTo = builder.MoveToElement(element);
+            moveTo.Build().Perform();
         }
 
         public void Dispose()
