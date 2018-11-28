@@ -43,8 +43,10 @@ namespace NaiveUnitTest
 
             IWebElement MojKomentarz = null;
 
+
+
             var Komentarze = broswer.FindElements(By.ClassName("comment-body"));
-            foreach (var Komentarz in Komentarze)
+            /*foreach (var Komentarz in Komentarze)
             {
                 if (Komentarz.FindElement(By.CssSelector(".comment-author b")).Text == autor)
                 {
@@ -53,12 +55,13 @@ namespace NaiveUnitTest
 
                 }
             }
+            */
 
-            Assert.NotNull(MojKomentarz);
+            Komentarze = broswer.FindElements(By.CssSelector(".comment-author b"));
+
+            Assert.NotNull(Komentarze.Single(x => x.Text == autor));
 
         }
-
-
 
         private string GenerateEmail()
         {
@@ -66,7 +69,6 @@ namespace NaiveUnitTest
             return $"{user}@email.com";
 
         }
-
 
         public void Dispose()
         {
