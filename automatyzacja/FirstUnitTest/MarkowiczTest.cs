@@ -25,6 +25,20 @@ namespace FinallUnitTest
             }
         }
 
+        private string GenerateEmail()
+        {
+            var user = Guid.NewGuid().ToString();
+            return $"{user}@noneexistent.test.com";
+        }
+
+        private static Random random = new Random();
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+
         [Fact]
         public void MarkowiczTransformacjaTest()
         {
@@ -38,7 +52,7 @@ namespace FinallUnitTest
                 var href = article.GetAttribute("href");
                 if (href == "http://markowicz.pro/o-transformacjach/")
                 {
-                    
+
                 }
             }
 
@@ -55,9 +69,49 @@ namespace FinallUnitTest
                 }
             }
 
-               
+
 
             Assert.NotNull(expected);
+        }
+
+        [Fact]
+        public void AddCheckCommentBlogTest()
+        {
+            string comment = "Nice post! " + RandomString(5);
+            string author = "Mateusz M.";
+            string email = GenerateEmail();
+            string url = "http://mati.automatyzuje.pl";
+
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net");
+
+            // przejscie do komentarza postu
+            var commentLink = browser.FindElementByClassName("comments-link");
+            commentLink.Click();
+
+            //dodanie komentarza
+            var commentTextBox = browser.FindElementById("comment");
+            var authorTextBox = browser.FindElementById("author");
+            var emailTextBox = browser.FindElementById("email");
+            var urlTextBox = browser.FindElementById("url");
+            var addCommentButton = browser.FindElementById("submit");
+
+            commentTextBox.SendKeys(comment);
+            authorTextBox.SendKeys(author);
+            emailTextBox.SendKeys(email);
+            urlTextBox.SendKeys(url);
+
+            addCommentButton.Click();
+
+            var addedCommentsToVerify = browser.FindElementsByClassName("comment-content");
+            bool expected = false;
+
+            foreach (var commentA in addedCommentsToVerify)
+            {
+                if (commentA.FindElement(By.CssSelector("p")).Text == comment)
+                    expected = true;
+            }
+            Assert.True(expected);
+
         }
     }
 }
