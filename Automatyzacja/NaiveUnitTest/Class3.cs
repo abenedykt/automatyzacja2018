@@ -44,23 +44,24 @@ namespace NewTestAddCommnet
             var email = browser.FindElement(By.Name("email"));
             email.SendKeys(GenerateEmail());
 
-            var dodaj = browser.FindElement(By.Name("submit"));
-            dodaj.Click();
+            var add = browser.FindElement(By.Name("submit"));
+            add.Click();
 
-            var komentarze = browser.FindElements(By.XPath("//*[@class='comment-content'] /p"));
-            IWebElement expected = null;
-            foreach (var result in komentarze)
-            {
-                if (result.Text == TextKomentarza)
-                {
-                    expected = result;
-                    break;
-                }
+            var comments = browser.FindElements(By.XPath("//*[@class='comment-content'] /p"));
 
-            }
-            Assert.NotNull(expected);
+            var checkcommnet = comments.Where(x => x.Text == TextKomentarza); //zapis z foreach przy uzyciu linq
+            Assert.Single(checkcommnet);
 
-
+            //IWebElement expected = null;
+            // foreach (var result in komentarze)
+            // {
+            //     if (result.Text == TextKomentarza)
+            //     { 
+            //         expected = result;
+            //         break;
+            //     }
+            // }
+            // Assert.NotNull(expected);
 
         }
 
