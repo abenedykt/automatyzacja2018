@@ -114,6 +114,13 @@ namespace NaiveUnitTest
 
             log_out.Click();
 
+            logname = browser.FindElement(By.Name("log"));
+
+            Assert.NotNull(logname);
+
+
+
+
 
 
         }
