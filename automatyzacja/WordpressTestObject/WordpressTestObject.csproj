@@ -64,7 +64,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPage.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="LoginPage.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="NotePage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
