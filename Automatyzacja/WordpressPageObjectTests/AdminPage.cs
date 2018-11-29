@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
@@ -40,7 +41,7 @@ namespace WordpressPageObjectTests
 
         internal Uri PublishNote()
         {
-            WaitForClickable(By.Id("sample-permalink"), 10);
+            WaitForClickable(By.Id("sample-permalink"), 2);
             var urlLink = _browser.FindElement(By.Id("sample-permalink")).Text;
             var publishButton = _browser.FindElement(By.Id("publish"));
             publishButton.Click();
@@ -50,13 +51,33 @@ namespace WordpressPageObjectTests
 
         internal LoginPage Logout() // metoda wyloguj po wylogowaniu zwraca przechodzi na stronę logowania
         {
-            throw new NotImplementedException();
+            var userName = _browser.FindElements(By.ClassName("display-name")).First();
+            MoveToElement(userName);
+
+            var logoutLink = _browser.FindElement(By.Id("wp-admin-bar-logout"));
+            WaitForClickable(logoutLink, 10);
+            logoutLink.Click();
+
+            return new LoginPage(_browser);
         }
 
         private void WaitForClickable(By by, int seconds)
         {
             var wait = new WebDriverWait(_browser, TimeSpan.FromSeconds(seconds));
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(by));
+        }
+
+        private void WaitForClickable(IWebElement element, int seconds)
+        {
+            var wait = new WebDriverWait(_browser, TimeSpan.FromSeconds(seconds));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
+        }
+
+        private void MoveToElement(IWebElement element)
+        {
+            Actions builder = new Actions(_browser);
+            Actions moveTo = builder.MoveToElement(element);
+            moveTo.Build().Perform();
         }
     }
 }
