@@ -22,12 +22,12 @@ namespace WordPressPageObject
             var adminPage = loginPage.Login(Config.User, Config.Password);
             adminPage.CreatNewNote();
 
-            var exampleNote = new Note("abs", "lorem ipsum");
+            var exampleNote = new Note("Nowy Super Tytuł", "Nowa Super Tresc Tresci");
             adminPage.EditNote(exampleNote);
-            var newNoteUrl = adminPage.PublishNote();
+            var newNoteUrl = adminPage.PublisshNote();
 
             var logoutPage = adminPage.Logout();
-            Assert.True(loginPage.IsloggedOut());
+            //Assert.True(loginPage.IsloggedOut());
 
             var newNote = new NotePage(_browser, newNoteUrl);
             Assert.Equal(exampleNote.Title, newNote.Title);
