@@ -17,7 +17,20 @@ namespace WordpressPageObjectTests
         [Fact]
         public void Can_add_and_publish_new_note()
         {
+            var loginPage = new LoginPage(_browser);
+            var adminPage = loginPage.Login(Config.User, Config.Password);
+            adminPage.CreateNewNote();
 
+            var exampleNote = new Note("abc", "lorem ipsium");
+            adminPage.EditNote(exampleNote);
+            var newNoteUrl = adminPage.PublishNote();
+
+            var logoutPage = adminPage.Logout();
+            Assert.True(loginPage.IsLoggedOut());
+
+            var newNote = new NotePage(_browser, newNoteUrl);
+            Assert.Equal(exampleNote.Title, newNote.Title);
+            Assert.Equal(exampleNote.Content, newNote.Content);
         }
 
         public void Dispose()
