@@ -11,38 +11,38 @@ using Xunit;
 
 namespace NaiveUnitTest
 {
-    public class zalogowaie_wylogowanie : IDisposable
+    public class Zalogowaie_wylogowanie : IDisposable
     {
-        private IWebDriver broswer;
+        private IWebDriver browser;
 
-        public zalogowaie_wylogowanie()
+        public Zalogowaie_wylogowanie()
         {
-            broswer = new ChromeDriver();
+            browser = new ChromeDriver();
         }
 
         [Fact]
-        public void logowanie()
+        public void Logowanie()
         {
-            broswer.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
+            browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
 
-            var nazwaUzytkownika = broswer.FindElement(By.Name("log"));
+            var nazwaUzytkownika = browser.FindElement(By.Name("log"));
             nazwaUzytkownika.SendKeys("automatyzacja");
 
-            var haslo = broswer.FindElement(By.Name("pwd"));
+            var haslo = browser.FindElement(By.Name("pwd"));
             haslo.SendKeys("jesien2018");
             haslo.Submit();
 
             var nameSelector = By.CssSelector("span.display-name");
-            var serchReslut = broswer.FindElement(nameSelector);
+            var serchReslut = browser.FindElement(nameSelector);
 
             Assert.Equal("Jan Automatyczny", serchReslut.Text);
                 
-            var menu = broswer.FindElement(nameSelector);
+            var menu = browser.FindElement(nameSelector);
             MoveToElement(menu);
             WaitForClickable(By.Id("wp-admin-bar-logout"),5);
             Wyloguj_sie();
 
-            nazwaUzytkownika = broswer.FindElement(By.Name("log"));
+            nazwaUzytkownika = browser.FindElement(By.Name("log"));
 
             Assert.NotNull(nazwaUzytkownika);
 
@@ -53,7 +53,7 @@ namespace NaiveUnitTest
 
         {
 
-            var wait = new WebDriverWait(broswer, TimeSpan.FromSeconds(seconds));
+            var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(seconds));
 
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(by));
 
@@ -65,7 +65,7 @@ namespace NaiveUnitTest
 
         {
 
-            var wait = new WebDriverWait(broswer, TimeSpan.FromSeconds(seconds));
+            var wait = new WebDriverWait(browser, TimeSpan.FromSeconds(seconds));
 
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(element));
 
@@ -75,7 +75,7 @@ namespace NaiveUnitTest
 
         {
 
-            var element = broswer.FindElement(selector);
+            var element = browser.FindElement(selector);
 
             MoveToElement(element);
 
@@ -85,7 +85,7 @@ namespace NaiveUnitTest
 
         {
 
-            Actions builder = new Actions(broswer);
+            Actions builder = new Actions(browser);
 
             Actions moveTo = builder.MoveToElement(element);
 
@@ -99,14 +99,14 @@ namespace NaiveUnitTest
         private void Wyloguj_sie()
         {
 
-            var wyloguj_sie = broswer.FindElement(By.Id("wp-admin-bar-logout"));
+            var wyloguj_sie = browser.FindElement(By.Id("wp-admin-bar-logout"));
             wyloguj_sie.Click();
 
         }
 
         public void Dispose()
         {
-            broswer.Dispose();
+            browser.Dispose();
         }
     }
 }

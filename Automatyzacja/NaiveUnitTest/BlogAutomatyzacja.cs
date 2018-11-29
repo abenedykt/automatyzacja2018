@@ -20,7 +20,7 @@ namespace NaiveUnitTest
 
         [Fact]
 
-        public void add_comment()
+        public void Add_comment()
         {
             var autor = "Milena-" + Guid.NewGuid().ToString();
 
