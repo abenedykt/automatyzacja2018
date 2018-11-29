@@ -6,7 +6,6 @@ namespace WordpressPageObjectTests
 {
     internal class NotePage
     {
-        private readonly object newNoteUrl;
         private IWebDriver _browser;
 
         public NotePage(IWebDriver browser, Uri newNoteUrl)

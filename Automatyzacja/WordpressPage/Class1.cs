@@ -29,12 +29,10 @@ namespace WordpressPageObjectTests
             var adminPage = loginPage.Login(Config.User, Config.Password);
             adminPage.CreateNewNote();
 
-            var exampleNote = new Note("abc", "loren ipsium");
+            var exampleNote = new Note(Generate(1),Generate(10));
             adminPage.EditNote(exampleNote);
             var newNoteUrl = adminPage.PublishNote();
-
-           
-
+        
             var logoutPage = adminPage.Logout();
             Assert.True(loginPage.IsLoggedOut());
 
@@ -56,6 +54,17 @@ namespace WordpressPageObjectTests
             {
 
             }
+
+        }
+        private string Generate(int lines)
+        {
+            var result = string.Empty;
+            for (int i = 0; i < lines; i++)
+            {
+                result += Guid.NewGuid().ToString();
+            }
+
+            return result;
 
         }
     }
