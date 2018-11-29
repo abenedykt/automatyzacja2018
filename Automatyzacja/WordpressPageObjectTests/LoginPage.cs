@@ -29,7 +29,8 @@ namespace WordpressPageObjectTests
 
         internal bool IsLoggedOut()
         {
-            throw new NotImplementedException();
+            var logoutMessage = _browser.FindElement(By.ClassName("message")).Text;
+            return logoutMessage == "Wylogowano się.";
         }
     }
 }

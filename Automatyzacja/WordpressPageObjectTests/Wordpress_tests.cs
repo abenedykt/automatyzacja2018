@@ -25,7 +25,7 @@ namespace WordpressPageObjectTests
             var adminPage = loginPage.Login(Config.Url, Config.User, Config.Password); // zaloguj na stronę administracyjną się podając login i hasło 
             adminPage.CreateNewNote(_browser); // stwórz nową notatkę na stronie administracyjnej
 
-            var exampleNote = new Note("abc", "lorem ipsum"); // stwórz nową notatkę z tytułem i treścią i przypisz ją do exampleNote
+            var exampleNote = new Note("tytuł eweliny", "notatka eweliny"); // stwórz nową notatkę z tytułem i treścią i przypisz ją do exampleNote
             adminPage.EditNote(exampleNote); // na stronie administracyjnej edytuj notatkę
             var newNoteUrl = adminPage.PublishNote(); // na stronie administracyjnej opublikuj notatkę, która zwróci URL/URI
 
