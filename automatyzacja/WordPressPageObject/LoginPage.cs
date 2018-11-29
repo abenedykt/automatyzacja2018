@@ -30,8 +30,19 @@ namespace WordPressPageObject
             passwordTextBox.SendKeys(password);
             logInButton.Click();
 
-            
-            return new AdminPage(_browser);
+            var adminPage = new AdminPage(_browser);
+
+            if (adminPage.pageLoaded())
+            {
+                return adminPage;
+            }
+            throw PageNotLoadedException();
+        }
+
+        // Uzupełnic!!!!!
+        private Exception PageNotLoadedException()
+        {
+            throw new NotImplementedException();
         }
 
         public bool IsLoggedOut()
