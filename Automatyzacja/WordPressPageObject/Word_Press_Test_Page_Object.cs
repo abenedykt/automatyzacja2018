@@ -18,6 +18,22 @@ namespace WordPressPageObject
 
         public void Cann_Add_and_publish_New_nowe()
         {
+            var loginPage = new LoginPage(_browser);
+            var adminPage = loginPage.Login(Config.User, Config.Password);
+            adminPage.CreatNewNote();
+
+            var exampleNote = new Note("abs", "lorem ipsum");
+            adminPage.EditNote(exampleNote);
+            var newNoteUrl = adminPage.PublishNote();
+
+            var logoutPage = adminPage.Logout();
+            Assert.True(loginPage.IsloggedOut());
+
+            var newNote = new NotePage(_browser, newNoteUrl);
+            Assert.Equal(exampleNote.Title, newNote.Title);
+            Assert.Equal(exampleNote.Content, newNote.Content);
+
+
 
         }
 

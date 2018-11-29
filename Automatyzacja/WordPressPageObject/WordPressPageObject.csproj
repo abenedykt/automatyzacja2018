@@ -64,6 +64,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminPage.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="LoginPage.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="NotePage\newNoteUrl.cs" />
     <Compile Include="Word_Press_Test_Page_Object.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
