@@ -1,17 +1,30 @@
 ﻿using System;
+using System.Linq;
+using OpenQA.Selenium;
 
 namespace WordpressPageObjectTests
 {
     internal class AdminPage
     {
+        private IWebDriver _browser;
+
+        public AdminPage(IWebDriver browser)
+        {
+            _browser = browser;
+        }
+
         internal void CreateNewNote()
         {
-            throw new NotImplementedException();
+
+            var MenuItems = _browser.FindElements(By.ClassName("wp-menu-name"));
+            MenuItems.First(Item=>Item.Text=="Wpisy").Click();
+
+            _browser.FindElement(By.LinkText("Dodaj nowy")).Click();
         }
 
         internal void EditNote(Note exampleNote)
         {
-            throw new NotImplementedException();
+            var AddTitle = _browser.FindElement(By.)
         }
 
         internal Uri PublishNote()
