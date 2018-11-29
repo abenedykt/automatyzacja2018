@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using Xunit;
 
 namespace WordpressPageObjectTests
 {
@@ -30,7 +31,9 @@ namespace WordpressPageObjectTests
 
         internal bool IsLoggeOut()
         {
-            throw new NotImplementedException();
+                var checkIfLogout = _browser.FindElement(By.CssSelector("p.message"));
+                return checkIfLogout.Text == "Wylogowano się.";
+               
         }
     }
 }
