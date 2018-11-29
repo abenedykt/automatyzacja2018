@@ -1,0 +1,8 @@
+﻿namespace WordpressPageObjectTests
+{
+    internal class Config
+    {
+        public static string User = "automatyzacja";
+        public static string Password = "jesien2018";
+    }
+}
