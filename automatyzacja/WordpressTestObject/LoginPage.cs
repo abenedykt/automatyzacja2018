@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenQA.Selenium;
+using WordpressTestObject;
 
 namespace WordpressPageObjectTests
 {
@@ -7,14 +8,24 @@ namespace WordpressPageObjectTests
     {
         private IWebDriver _browser;
 
-        public LoginPage(IWebDriver browser)
+        public LoginPage(IWebDriver browser, string url)
         {
             _browser = browser;
+            _browser.Navigate().GoToUrl(url);
         }
 
-        internal AdminPage Login(object user, object password)
+        internal AdminPage Login(string user, string password)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var logbox = _browser.FindElement(By.Name("log"));
+            logbox.SendKeys(Config.User);
+
+            var passbox = _browser.FindElement(By.Name("pwd"));
+            passbox.SendKeys(Config.Password);
+
+            passbox.Submit();
+
+            return new AdminPage(_browser);
         }
 
         internal bool IsLoggedOut()
