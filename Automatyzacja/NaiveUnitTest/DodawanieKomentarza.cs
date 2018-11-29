@@ -9,11 +9,11 @@ using Xunit;
 
 namespace NaiveUnitTest
 {
-    public class BlogAutomatyzacja : IDisposable
+    public class DodawanieKomentarza : IDisposable
     {
         private IWebDriver broswer;
 
-        public BlogAutomatyzacja()
+        public DodawanieKomentarza()
         {
             broswer = new ChromeDriver();
         }

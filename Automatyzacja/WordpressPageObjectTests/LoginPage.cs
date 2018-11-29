@@ -22,13 +22,24 @@ namespace WordpressPageObjectTests
 
             var PasswordBox = _browser.FindElement(By.Name("pwd"));
             PasswordBox.SendKeys(UserPassword);
+            PasswordBox.Submit();
 
             return new AdminPage(_browser);
         }
 
         internal bool IsLoggedOut()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _browser.FindElement(By.Name("log"));
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+           
+
         }
     }
 }
