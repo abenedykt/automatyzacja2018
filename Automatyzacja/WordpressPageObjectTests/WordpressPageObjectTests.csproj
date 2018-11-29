@@ -64,9 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="AdminPage.cs" />
+    <Compile Include="Note.cs" />
+    <Compile Include="NotePage.cs" />
+    <Compile Include="WordPress_tests.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="IDisposalbe.cs" />
+    <Compile Include="LoginPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,8 @@
 
         public Note(string title, string content)
         {
-            this.Title = title;
-            this.Content = content;
+            Title = title;
+            Content = content;
         }
 
         public string Title { get => v1; set => v1 = value; }
