@@ -30,7 +30,8 @@ namespace WordPresObjectTests
 
         internal bool IsLoggedOut()
         {
-            throw new NotImplementedException();
+            var logged = _browser.FindElement(By.XPath("//*[contains(text(),'Nazwa użytkownika lub e-mail')]"));
+            return logged.Text == "Nazwa użytkownika lub e-mail";
         }
     }
 }

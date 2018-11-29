@@ -48,6 +48,10 @@ namespace WordPresObjectTests
             Actions moveTo = builder.MoveToElement(element);
             moveTo.Build().Perform();
 
+            _browser.Manage()
+               .Timeouts()
+               .ImplicitWait = TimeSpan.FromSeconds(5);
+
             var logOut = _browser.FindElement(By.Id("wp-admin-bar-logout"));
             logOut.Click();
 

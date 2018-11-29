@@ -30,11 +30,8 @@ namespace WordPresObjectTests
             Assert.True(loginPage.IsLoggedOut());
 
             var newNote = new NotePage(_browser ,newNoteUrl);
-            Assert.Equal(exampleNote.Title, newNote.Title);
-            Assert.Equal(exampleNote.Content, newNote.Content);
-
-
-
+            Assert.Equal(exampleNote.Title, newNote.Title());
+            Assert.Equal(exampleNote.Content, newNote.Content());
         }
             public void Dispose()
         {
