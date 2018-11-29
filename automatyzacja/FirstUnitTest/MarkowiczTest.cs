@@ -17,6 +17,7 @@ namespace FinallUnitTest
         private ChromeDriver browser;
         private ITestOutputHelper output;
 
+        // implementacja output'u dostepnego po wykonaniu sie testu
         public MarkowiczTest(ITestOutputHelper output)
         {
             browser = new ChromeDriver();
