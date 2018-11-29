@@ -41,7 +41,7 @@ namespace NaiveUnitTest
             var opublikujKomentarz = broswer.FindElement(By.Id("submit"));
             opublikujKomentarz.Click();
 
-            IWebElement MojKomentarz = null;
+           // IWebElement MojKomentarz = null;
 
 
 
