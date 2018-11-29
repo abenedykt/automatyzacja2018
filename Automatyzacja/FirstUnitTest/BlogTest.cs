@@ -105,7 +105,7 @@ namespace FirstUnitTest
             MoveToElement(username);
 
             var logOut = browser.FindElement(By.Id("wp-admin-bar-logout"));
-            WaitForClickable(logOut, 1);
+            WaitForClickable(logOut, 10);
             logOut.Click();
 
             var logOutMessage = browser.FindElement(By.ClassName("message")).Text;

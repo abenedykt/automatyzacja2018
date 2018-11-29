@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Automatyzacja", "Automatyza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FirstUnitTest", "FirstUnitTest\FirstUnitTest.csproj", "{16712A7E-337A-4CDA-BD51-3F06E0FDABAE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordpressPageObjectTests", "WordpressPageObjectTests\WordpressPageObjectTests.csproj", "{3D08FFB6-6196-4946-9638-1163F650F134}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{16712A7E-337A-4CDA-BD51-3F06E0FDABAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16712A7E-337A-4CDA-BD51-3F06E0FDABAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16712A7E-337A-4CDA-BD51-3F06E0FDABAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D08FFB6-6196-4946-9638-1163F650F134}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D08FFB6-6196-4946-9638-1163F650F134}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D08FFB6-6196-4946-9638-1163F650F134}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D08FFB6-6196-4946-9638-1163F650F134}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
