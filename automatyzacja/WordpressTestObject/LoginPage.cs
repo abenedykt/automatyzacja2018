@@ -8,10 +8,10 @@ namespace WordpressPageObjectTests
     {
         private IWebDriver _browser;
 
-        public LoginPage(IWebDriver browser, string url)
+        public LoginPage(IWebDriver browser)
         {
             _browser = browser;
-            _browser.Navigate().GoToUrl(url);
+            _browser.Navigate().GoToUrl(Config.AdminPageUrl);
         }
 
         internal AdminPage Login(string user, string password)
@@ -30,7 +30,16 @@ namespace WordpressPageObjectTests
 
         internal bool IsLoggedOut()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _browser.FindElement(By.Name("log"));
+                return true;
+            }
+            catch (Exception)
+            {
+
+                return false;
+            }
         }
     }
 }
