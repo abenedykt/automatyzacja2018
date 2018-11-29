@@ -1,6 +1,4 @@
-﻿
-
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
 using Xunit;
@@ -14,6 +12,10 @@ namespace WordPresObjectTests
         public Wordpress_tests()
         {
             _browser = new ChromeDriver();
+
+            _browser.Manage()
+              .Timeouts()
+              .ImplicitWait = TimeSpan.FromSeconds(5);
         }
         [Fact]
         public void Can_add_and_publish_new_note()
@@ -22,7 +24,7 @@ namespace WordPresObjectTests
             var adminPage = loginPage.Login(Config.User, Config.Password, Config.Url);
             adminPage.CreateNewNote();
 
-            var exampleNote = new Note("abc", "loren ipsium");
+            var exampleNote = new Note($"{Guid.NewGuid().ToString()}@tytul", $"{Guid.NewGuid().ToString()}@komentarz");
             adminPage.EditNote(exampleNote);
             var newNoteUrl = adminPage.PublishNote();
 

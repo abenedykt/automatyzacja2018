@@ -36,21 +36,17 @@ namespace WordPresObjectTests
             var submit = _browser.FindElement(By.Name("publish"));
             submit.Click();
 
-            var url = _browser.FindElement(By.XPath("//*[@id='sample-permalink']/a")).Text;
+            var url = _browser.FindElement(By.XPath("//*[@id='sample-permalink']/a")).GetAttribute("href");
 
             return new Uri(url);
         }
 
         internal LoginPage Logout()
         {
-            var element = _browser.FindElement(By.Id("wp-admin-bar-my-account"));
+            var admin_bar = _browser.FindElement(By.Id("wp-admin-bar-my-account"));
             Actions builder = new Actions(_browser);
-            Actions moveTo = builder.MoveToElement(element);
+            Actions moveTo = builder.MoveToElement(admin_bar);
             moveTo.Build().Perform();
-
-            _browser.Manage()
-               .Timeouts()
-               .ImplicitWait = TimeSpan.FromSeconds(5);
 
             var logOut = _browser.FindElement(By.Id("wp-admin-bar-logout"));
             logOut.Click();
