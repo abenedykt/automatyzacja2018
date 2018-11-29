@@ -28,9 +28,9 @@ namespace WordpressPageObjectTests
             var logutPage = adminPage.Logut();
             Assert.True(loginPage.IsLoggedOut());
 
-            var newNote = new NotePage(newNoteUrl);
-            Assert.Equal("abc", newNote.Title);
-            Assert.Equal("lorem ipsum", newNote.Content);
+            var newNote = new NotePage(_browser, newNoteUrl);
+            Assert.Equal(exampleNote.Title, newNote.Title);
+            Assert.Equal(exampleNote.Content, newNote.Content);
 
         }
 

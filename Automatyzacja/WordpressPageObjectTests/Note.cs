@@ -7,8 +7,11 @@
 
         public Note(string title, string content)
         {
-            this.title = title;
-            this.content = content;
+            Title = title;
+            Content = content;
         }
+
+        public string Title { get => title; set => title = value; }
+        public string Content { get => content; set => content = value; }
     }
 }
