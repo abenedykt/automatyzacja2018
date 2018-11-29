@@ -100,7 +100,9 @@ namespace NewTestAddCommnet
         public void Login()
         {
             browser.Navigate().GoToUrl("http://automatyzacja.benedykt.net/wp-admin");
-            browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            browser.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5); //czekanie po kazdej aksji 5s
+
+            //Zalogowanie
 
             var username = browser.FindElement(By.Name("log"));
             username.SendKeys("automatyzacja");
@@ -111,22 +113,27 @@ namespace NewTestAddCommnet
             var ClickToLogin = browser.FindElement(By.Name("wp-submit"));
             ClickToLogin.Click();
 
-            var CheckName = browser.FindElement(By.CssSelector(".wrap > h1"));
-            Assert.True(CheckName.Text == "Kokpit");
+            //Sprawdzenie czy zalogowano
 
-            var login = browser.FindElement(By.CssSelector(".display-name"));
-            Assert.True(login.Text == "Jan Automatyczny"); 
-            MoveToElement(login);
+            var CheckIfLogin = browser.FindElement(By.CssSelector(".wrap > h1"));
+            Assert.True(CheckIfLogin.Text == "Kokpit");
+
+            //Wylogowanie
+
+            var LoginName = browser.FindElement(By.CssSelector(".display-name"));
+            Assert.True(LoginName.Text == "Jan Automatyczny"); 
+            MoveToElement(LoginName);
 
             var logout = browser.FindElement(By.Id("wp-admin-bar-logout"));
             logout.Click();
+
+            //Sprawdzenie czy wylogowano
 
             var CheckIfLogout = browser.FindElement(By.CssSelector("p.message"));
             Assert.True(CheckIfLogout.Text == "Wylogowano się.");
 
             var LoginPage = browser.FindElement(By.XPath ("//*[@id='loginform']/p[1]/label"));
             Assert.Equal("Nazwa użytkownika lub e-mail", LoginPage.Text);
-
 
         }
     }
