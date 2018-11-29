@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaiveUnitTest", "NaiveUnitT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{17369AB3-3656-4D3C-B2F6-F94EC95DB210}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordpressPageObjectTests", "WordpressPageObjectTests\WordpressPageObjectTests.csproj", "{7B247EAF-51B2-4C89-A15D-AE994806C4DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17369AB3-3656-4D3C-B2F6-F94EC95DB210}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B247EAF-51B2-4C89-A15D-AE994806C4DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B247EAF-51B2-4C89-A15D-AE994806C4DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B247EAF-51B2-4C89-A15D-AE994806C4DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B247EAF-51B2-4C89-A15D-AE994806C4DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
