@@ -22,17 +22,17 @@ namespace WordpressPageObjectTests
         public void Can_add_and_publish_new_note()
         {
             var loginPage = new LoginPage(_browser); // otwórz stronę logowania w przeglądarce
-            var adminPage = loginPage.Login(Config.User, Config.Password); // zaloguj na stronę administracyjną się podając login i hasło 
-            adminPage.CreateNewNote(); // stwórz nową notatkę na stronie administracyjnej
+            var adminPage = loginPage.Login(Config.Url, Config.User, Config.Password); // zaloguj na stronę administracyjną się podając login i hasło 
+            adminPage.CreateNewNote(_browser); // stwórz nową notatkę na stronie administracyjnej
 
             var exampleNote = new Note("abc", "lorem ipsum"); // stwórz nową notatkę z tytułem i treścią i przypisz ją do exampleNote
             adminPage.EditNote(exampleNote); // na stronie administracyjnej edytuj notatkę
             var newNoteUrl = adminPage.PublishNote(); // na stronie administracyjnej opublikuj notatkę, która zwróci URL/URI
 
-            var logoutPage = adminPage.Logout();
+            var logoutPage = adminPage.Logout(); // na str. adm. wylogujemy się na stronę logowania
             Assert.True(loginPage.IsLoggedOut());
 
-            var newNote = new NotePage(newNoteUrl);
+            var newNote = new NotePage(_browser, newNoteUrl);
             Assert.Equal(exampleNote.Title, newNote.Title);
             Assert.Equal(exampleNote.Content, newNote.Content);
         }
