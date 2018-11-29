@@ -19,6 +19,21 @@ namespace WordPressPageObject
         [Fact]
         public void CanAddAndPublishNewNote()
         {
+            var loginPage = new LoginPage(_browser);
+            var adminPage = loginPage.Login(Config.User, Config.Password);
+            var exampleNote = new Note("Tytul notatki M", "Tresc mojej notatki");
+
+            adminPage.CreateNewNote();
+            adminPage.EditNote(exampleNote);
+
+            var newNoteUrl = adminPage.PublishNote();
+
+            var logoutPage = adminPage.LogOut();
+            Assert.True(loginPage.IsLoggedOut());
+
+            var newNote = new NotePage(_browser, newNoteUrl);
+            Assert.Equal(exampleNote.Title, newNote.Title);
+            Assert.Equal(exampleNote.Content, newNote.Content);
 
         }
 
