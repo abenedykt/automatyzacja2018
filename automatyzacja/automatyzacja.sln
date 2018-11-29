@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "automatyzacja", "automatyza
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NaiveUnitTest", "NaiveUnitTest\NaiveUnitTest.csproj", "{DED0F745-A387-4DE2-B2F6-F9F6E6193C82}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordpressTestObject", "WordpressTestObject\WordpressTestObject.csproj", "{B4DDAB16-7749-4741-99A8-E8E891AF8956}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DED0F745-A387-4DE2-B2F6-F9F6E6193C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DED0F745-A387-4DE2-B2F6-F9F6E6193C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DED0F745-A387-4DE2-B2F6-F9F6E6193C82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4DDAB16-7749-4741-99A8-E8E891AF8956}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4DDAB16-7749-4741-99A8-E8E891AF8956}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4DDAB16-7749-4741-99A8-E8E891AF8956}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4DDAB16-7749-4741-99A8-E8E891AF8956}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
