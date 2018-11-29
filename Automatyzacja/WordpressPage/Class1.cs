@@ -7,6 +7,8 @@ using Xunit;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using WordpressPage;
+using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Interactions;
 
 namespace WordpressPageObjectTests
 
@@ -19,7 +21,7 @@ namespace WordpressPageObjectTests
         {
             _browser = new ChromeDriver();
         }
-            
+
         [Fact]
         public void Can_and_and_publish_new_note()
         {
@@ -31,10 +33,12 @@ namespace WordpressPageObjectTests
             adminPage.EditNote(exampleNote);
             var newNoteUrl = adminPage.PublishNote();
 
+           
+
             var logoutPage = adminPage.Logout();
             Assert.True(loginPage.IsLoggedOut());
 
-            var newNote = new NotePage(newNoteUrl);
+            var newNote = new NotePage(_browser, newNoteUrl);
             Assert.Equal(exampleNote.Title, newNote.Title);
             Assert.Equal(exampleNote.Content, newNote.Content);
 
@@ -52,6 +56,7 @@ namespace WordpressPageObjectTests
             {
 
             }
+
         }
     }
 }
